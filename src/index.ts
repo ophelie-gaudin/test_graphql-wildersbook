@@ -2,24 +2,21 @@
 import { ApolloServer } from "apollo-server";
 import datasource from "./utils";
 import { buildSchema } from "type-graphql";
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { WildersResolver } from "./resolvers/wilders";
+import { SkillsResolver } from "./resolvers/skills";
+import { UpvotesResolver } from "./resolvers/upvotes";
 
 const PORT = 5000;
 
 async function bootstrap(): Promise<void> {
   // ... Building schema here
   const schema = await buildSchema({
-    resolvers: [WildersResolver],
+    resolvers: [WildersResolver, SkillsResolver, UpvotesResolver],
   });
 
   // Create the GraphQL server
   const server = new ApolloServer({
     schema,
-    csrfPrevention: true,
-    cache: "bounded",
-
-    plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   });
 
   // Start the server

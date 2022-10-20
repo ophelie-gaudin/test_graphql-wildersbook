@@ -16,14 +16,6 @@ class Skill {
   @OneToMany(() => Upvote, "skill")
   @Field(() => [Upvote])
   upvotes: Upvote[];
-
-  // relations: {
-  //   upvotes: {
-  //     target: "Upvote",
-  //     type: "one-to-many",
-  //     inverseSide: "skill",
-  //   },
-  // },
 }
 
 export default Skill;
